@@ -5,6 +5,9 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -13,7 +16,8 @@ import java.util.Random;
 public class ImageGridApp extends Application {
 
     private static final int GRID_SIZE = 4;
-    private static final int BORDER_SIZE = 5;
+    private static final int BORDER_SIZE = 2; // Réduire l'épaisseur de la bordure blanche
+    private static final int IMAGE_SIZE = 150; // Taille fixe pour l'espace de l'image
     private static final String IMAGE_DIR = "ferecatu/Base10000/images";
 
     @Override
@@ -32,9 +36,19 @@ public class ImageGridApp extends Application {
                     int randomIndex = random.nextInt(files.length);
                     Image image = new Image(files[randomIndex].toURI().toString());
                     ImageView imageView = new ImageView(image);
-                    imageView.setFitWidth(100);
-                    imageView.setFitHeight(100);
-                    gridPane.add(imageView, j, i);
+                    imageView.setFitWidth(IMAGE_SIZE);
+                    imageView.setFitHeight(IMAGE_SIZE);
+                    imageView.setPreserveRatio(true); // Conserver le ratio d'aspect
+
+                    // Créer une bordure grise
+                    Rectangle border = new Rectangle(IMAGE_SIZE, IMAGE_SIZE);
+                    border.setFill(Color.TRANSPARENT);
+                    border.setStroke(Color.GRAY);
+                    border.setStrokeWidth(1);
+
+                    StackPane imageContainer = new StackPane(border, imageView);
+                    imageContainer.setPrefSize(IMAGE_SIZE, IMAGE_SIZE);
+                    gridPane.add(imageContainer, j, i);
                 }
             }
         } else {
