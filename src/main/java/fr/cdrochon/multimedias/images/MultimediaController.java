@@ -1,4 +1,4 @@
-package fr.cdrochon.multimedias.controller;
+package fr.cdrochon.multimedias.images;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.CrossOrigin;
