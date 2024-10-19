@@ -1,0 +1,12 @@
+<!--<div class="image-container">-->
+<!--  <img [src]="checkerboardImage" alt="Checkerboard Image">-->
+<!--</div>-->
+
+<div class="image-grid">
+  <div class="image-wrapper" *ngIf="randomImageUrl">
+    <img [src]="randomImageUrl" alt="Image originale"/>
+  </div>
+  <div class="image-wrapper" *ngIf="swappedImageUrl">
+    <img [src]="swappedImageUrl" alt="Image modifiée"/>
+  </div>
+</div>
