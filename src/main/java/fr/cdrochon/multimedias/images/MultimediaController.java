@@ -33,12 +33,17 @@ public class MultimediaController {
      * @return Message de succès ou d'erreur
      */
     @GetMapping("/createCheckerboard")
-    public String createCheckerboard() {
+    public ResponseEntity<Map<String, String>> createCheckerboard() {
         try {
-            ImageUtils.createCheckerboardImage(imagesDirectory + "/checkerboard.png");
-            return "Checkerboard image created successfully.";
+            String checkerboardImagePath = imagesDirectory + "/checkerboard.png";
+            ImageUtils.createCheckerboardImage(checkerboardImagePath);
+            
+            Map<String, String> response = new HashMap<>();
+            response.put("checkerboardImage", "/images/checkerboard.png");
+            
+            return ResponseEntity.ok(response);
         } catch(Exception e) {
-            return "Error creating checkerboard image: " + e.getMessage();
+            throw new RuntimeException("Error creating checkerboard image: " + e.getMessage());
         }
     }
     
