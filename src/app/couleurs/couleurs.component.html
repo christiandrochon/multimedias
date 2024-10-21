@@ -1,8 +1,21 @@
 <!--<div class="image-container">-->
-<!--  <img [src]="checkerboardImage" alt="Checkerboard Image">-->
+<!--  <img [src]="checkerboardImageUrl" alt="Checkerboard Image">-->
 <!--</div>-->
 
-<div class="image-grid">
+<!--<div class="image-grid">-->
+<!--  <div class="image-wrapper" *ngIf="randomImageUrl">-->
+<!--    <img [src]="randomImageUrl" alt="Image originale"/>-->
+<!--  </div>-->
+<!--  <div class="image-wrapper" *ngIf="swappedImageUrl">-->
+<!--    <img [src]="swappedImageUrl" alt="Image modifiée"/>-->
+<!--  </div>-->
+<!--</div>-->
+
+<div *ngIf="imageUrl.includes('createCheckerboard')" class="image-container">
+  <img [src]="checkerboardImageUrl" alt="Checkerboard Image">
+</div>
+
+<div *ngIf="imageUrl.includes('swapRandomImage')" class="image-grid">
   <div class="image-wrapper" *ngIf="randomImageUrl">
     <img [src]="randomImageUrl" alt="Image originale"/>
   </div>
