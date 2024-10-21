@@ -1,0 +1,7 @@
+<h1>Project URLs</h1>
+<ul>
+  <li *ngFor="let url of urls">
+    <a [routerLink]="url.path"><strong>{{ url.path }}</strong></a>: {{ url.description }}
+  </li>
+</ul>
+<p>home works!</p>
