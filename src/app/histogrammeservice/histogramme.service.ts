@@ -11,9 +11,14 @@ export class HistogrammeService {
 
   constructor(private http: HttpClient) {}
 
-  // Appel à l'API pour récupérer l'histogramme et l'URL de l'image
+  // Appel à l'API pour récupérer l'histogramme de niveaux de gris et l'URL de l'image
   getGrayLevelHistogram(numBins: number): Observable<{ histogram: number[], imageUrl: string }> {
     return this.http.get<{ histogram: number[], imageUrl: string }>(`${this.apiUrl}/histogramme-gris?numBins=${numBins}`);
+  }
+
+  // Appel à l'API pour récupérer les histogrammes RVB et l'URL de l'image
+  getRGBHistogram(numBins: number): Observable<{ redHistogram: number[], greenHistogram: number[], blueHistogram: number[], imageUrl: string }> {
+    return this.http.get<{ redHistogram: number[], greenHistogram: number[], blueHistogram: number[], imageUrl: string }>(`${this.apiUrl}/histogramme-couleur?numBins=${numBins}`);
   }
 
   // constructor() { }
