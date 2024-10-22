@@ -1,4 +1,4 @@
-<div class="container mt-5 align-content-lg-center">
+<div class="container mt-5 text-center">
   <h1 class="mb-4">Histogramme des Niveaux de Couleurs</h1>
 
   <!-- Sélecteur du nombre de bins et bouton pour recharger une image -->
@@ -17,11 +17,11 @@
 
   <!-- Affichage de l'image -->
   <div class="mb-4 text-center">
-    <img *ngIf="imageUrl" [src]="imageUrl" alt="Image aléatoire" class="img-fluid rounded shadow" style="max-width: 100%; height: auto;"/>
+    <img *ngIf="imageUrl" [src]="imageUrl" alt="Image aléatoire" class="img-fluid rounded shadow img-perso" style="max-width: 100%; height: auto;"/>
   </div>
 
   <!-- Affichage du diagramme en bâtons pour les niveaux de couleurs -->
-  <div class="chart-container mx-auto">
+  <div class="chart-container">
     <canvas baseChart
             [datasets]="chartData"
             [labels]="chartLabels"
@@ -31,26 +31,28 @@
   </div>
 
   <!-- Affichage des intervalles de niveaux de couleurs (RVB) -->
-  <div class="mb-5 w-100 text-center">
-    <h3>Intervalles de niveaux de couleurs (Rouge) :</h3>
-    <ul class="list-group w-50 mx-auto">
-      <li class="list-group-item" *ngFor="let bin of binRangesRed">
-        {{ bin.label }} : de {{ bin.start }} à {{ bin.end }} (valeurs de rouge)
-      </li>
-    </ul>
+  <div>
+    <div class="my-5 w-100 text-center container-values">
+      <h3>Intervalles de niveaux de couleurs (Rouge) :</h3>
+      <ul class="list-group w-50 mx-auto">
+        <li class="list-group-item" *ngFor="let bin of binRangesRed">
+          {{ bin.label }} : de {{ bin.start }} à {{ bin.end }} (valeurs de rouge)
+        </li>
+      </ul>
 
-    <h3>Intervalles de niveaux de couleurs (Vert) :</h3>
-    <ul class="list-group w-50 mx-auto">
-      <li class="list-group-item" *ngFor="let bin of binRangesGreen">
-        {{ bin.label }} : de {{ bin.start }} à {{ bin.end }} (valeurs de vert)
-      </li>
-    </ul>
+      <h3>Intervalles de niveaux de couleurs (Vert) :</h3>
+      <ul class="list-group w-50 mx-auto">
+        <li class="list-group-item" *ngFor="let bin of binRangesGreen">
+          {{ bin.label }} : de {{ bin.start }} à {{ bin.end }} (valeurs de vert)
+        </li>
+      </ul>
 
-    <h3>Intervalles de niveaux de couleurs (Bleu) :</h3>
-    <ul class="list-group w-50 mx-auto">
-      <li class="list-group-item" *ngFor="let bin of binRangesBlue">
-        {{ bin.label }} : de {{ bin.start }} à {{ bin.end }} (valeurs de bleu)
-      </li>
-    </ul>
+      <h3>Intervalles de niveaux de couleurs (Bleu) :</h3>
+      <ul class="list-group w-50 mx-auto">
+        <li class="list-group-item" *ngFor="let bin of binRangesBlue">
+          {{ bin.label }} : de {{ bin.start }} à {{ bin.end }} (valeurs de bleu)
+        </li>
+      </ul>
+    </div>
   </div>
 </div>

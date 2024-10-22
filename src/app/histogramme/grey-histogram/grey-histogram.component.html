@@ -20,17 +20,7 @@
 
   <!-- Affichage de l'image, centré et espacé du bouton -->
   <div class="mb-4 text-center">
-    <img *ngIf="imageUrl" [src]="imageUrl" alt="Image aléatoire" class="img-fluid rounded shadow" style="max-width: 100%; height: auto;"/>
-  </div>
-
-  <!-- Affichage des bins avec explication, centré -->
-  <div class="mb-5">
-    <h3>Intervalles de valeurs de luminosité :</h3>
-    <ul class="list-group w-50 mx-auto">
-      <li class="list-group-item text-center" *ngFor="let bin of binRanges">
-        {{ bin.label }} : de {{ bin.start }} à {{ bin.end }} (valeurs de gris)
-      </li>
-    </ul>
+    <img *ngIf="imageUrl" [src]="imageUrl" alt="Image aléatoire" class="img-fluid rounded shadow img-perso" style="max-width: 100%; height: auto;"/>
   </div>
 
   <!-- Affichage du diagramme en bâtons, centré -->
@@ -41,5 +31,15 @@
             [options]="chartOptions"
             chartType="bar">
     </canvas>
+  </div>
+
+  <!-- Affichage des bins avec explication, centré -->
+  <div class="mt-4 mb-5 container-values">
+    <h3>Intervalles de valeurs de luminosité :</h3>
+    <ul class="list-group w-50 mx-auto" style="font-size: 100%">
+      <li class="list-group-item text-center" *ngFor="let bin of binRanges">
+        {{ bin.label }} : de {{ bin.start }} à {{ bin.end }} (valeurs de gris)
+      </li>
+    </ul>
   </div>
 </div>

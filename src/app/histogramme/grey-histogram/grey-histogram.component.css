@@ -1,14 +1,26 @@
+/* CSS */
 .container {
-  max-width: 50%;
+  width: 80%; /* Augmente la largeur du container */
+  margin: 0 auto; /* Centre le container */
+  padding: 10px; /* Ajuste le padding interne */
+}
+
+.img-perso {
+  width: 40%;
+  height: auto;
+  display: block;
   margin: 0 auto;
 }
 
-.content {
-  margin: 0 auto;
+.container-values {
+  width: 50%; /* Adjust the width to a moderate size */
+  padding: 10px; /* Adjust the padding as needed */
+  font-size: 75%; /* Make the characters smaller */
+  margin: 0 auto; /* Center the container */
 }
 
 .chart-container {
-  width: 75%; /* Reduce the width of the chart */
+  width: 90%; /* Reduce the width of the chart */
   margin: 0 auto;
 }
 
