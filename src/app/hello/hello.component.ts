@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ServicesService} from '../services/services.service';
+import {HelloService} from './hello.service';
 
 @Component({
   selector: 'app-hello',
@@ -8,13 +8,14 @@ import {ServicesService} from '../services/services.service';
   templateUrl: './hello.component.html',
   styleUrl: './hello.component.css'
 })
-export class HelloComponent  implements OnInit {
+export class HelloComponent implements OnInit {
   greeting: string | undefined;
 
-  constructor(private myApiService: ServicesService) { }
+  constructor(private helloService: HelloService) {
+  }
 
   ngOnInit(): void {
-    this.myApiService.getGreeting().subscribe(
+    this.helloService.getGreeting().subscribe(
       (data: string) => {
         this.greeting = data;
       },

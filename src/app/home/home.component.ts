@@ -16,6 +16,8 @@ export class HomeComponent {
     { path: '/images', description: 'Multimedia Component' },
     { path: '/hello', description: 'Hello Component' },
     { path: '/createCheckerboard', description: 'Create Checkerboard' },
-    { path: '/swapRandomImage', description: 'Swap Random Image' }
+    { path: '/swapRandomImage', description: 'Swap Random Image' },
+    {path: '/histogramme-gris/:bins', description: 'Grey Histogram'},
+    {path: 'histogramme-couleur/:bins', description: 'Color Histogram'}
   ];
 }
