@@ -1,4 +1,12 @@
 <div class="container mt-5 text-center">
+
+  <!-- Link to return to the homepage -->
+  <div class="mb-4">
+    <a href="/" class="btn btn-secondary">
+      <i class="bi bi-house-door"></i> Retour à la page d'accueil
+    </a>
+  </div>
+
   <!-- Titre centré -->
   <h1 class="mb-4">Histogramme en Niveaux de Gris</h1>
 
@@ -6,7 +14,7 @@
   <div class="d-flex justify-content-center align-items-center mb-4">
     <!-- Colonne pour le champ de sélection du nombre de bins -->
     <div class="mx-lg-3">
-      <label for="numBins" class="form-label">Nombre de bins :</label>
+      <label for="numBins" class="form-label">Nombre d'intervales de niveaux de gris :</label>
       <input id="numBins" type="number" [(ngModel)]="numBins" min="2" max="256" class="form-control w-100" (change)="updateBins()"/>
     </div>
 

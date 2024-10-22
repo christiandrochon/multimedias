@@ -1,10 +1,18 @@
 <div class="container mt-5 text-center">
+
+  <!-- Link to return to the homepage -->
+  <div class="mb-4">
+    <a href="/" class="btn btn-secondary">
+      <i class="bi bi-house-door"></i> Retour à la page d'accueil
+    </a>
+  </div>
+
   <h1 class="mb-4">Histogramme des Niveaux de Couleurs</h1>
 
   <!-- Sélecteur du nombre de bins et bouton pour recharger une image -->
   <div class="d-flex justify-content-center align-items-center mb-4">
     <div class="mx-3">
-      <label for="numBins" class="form-label">Nombre de bins :</label>
+      <label for="numBins" class="form-label">Nombre d'intervalles de couleurs :</label>
       <input id="numBins" type="number" [(ngModel)]="numBins" min="2" max="256" class="form-control w-100" (change)="updateBins(); loadHistogram()"/>
     </div>
 

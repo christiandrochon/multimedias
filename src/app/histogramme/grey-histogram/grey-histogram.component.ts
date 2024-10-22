@@ -31,7 +31,7 @@ export class GreyHistogramComponent implements OnInit {
   chartOptions = {
     responsive: true,
     scales: {
-      x: { title: { display: true, text: 'Bins' } },
+      x: { title: { display: true, text: 'Intervalles de gris' } },
       y: { title: { display: true, text: 'Pixels' } }
     }
   };
