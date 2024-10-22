@@ -1,0 +1,19 @@
+.container {
+  max-width: 50%;
+  margin: 0 auto;
+}
+
+.content {
+  margin: 0 auto;
+}
+
+.chart-container {
+  width: 75%; /* Reduce the width of the chart */
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .container {
+    max-width: 100%;
+  }
+}
