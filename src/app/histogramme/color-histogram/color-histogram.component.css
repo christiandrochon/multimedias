@@ -1,0 +1,11 @@
+/* Limite la largeur du graphique à 50% de la largeur du conteneur */
+.chart-container {
+  width: 50%;   /* Limite à 50% de la largeur parent */
+  margin: 0 auto;  /* Centre le graphique horizontalement */
+}
+
+/* Ajuste la taille du canvas */
+canvas {
+  max-width: 100%;  /* Empêche le dépassement de la taille du conteneur */
+  height: auto;  /* Garde le ratio d'aspect correct */
+}
