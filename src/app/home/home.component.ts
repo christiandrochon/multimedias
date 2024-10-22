@@ -12,7 +12,7 @@ import {RouterModule} from '@angular/router';
 export class HomeComponent {
 
   urls = [
-    { path: '/', description: 'Home Page' },
+    // { path: '/', description: 'Home Page' },
     { path: '/images', description: 'Multimedia Component' },
     { path: '/hello', description: 'Hello Component' },
     { path: '/createCheckerboard', description: 'Create Checkerboard' },
