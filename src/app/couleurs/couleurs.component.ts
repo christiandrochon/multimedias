@@ -45,6 +45,9 @@ export class CouleursComponent implements OnInit {
     // this.createCheckerboard()
   }
 
+  /**
+   * Affiche une image aleatoire et affiche à sa droite la meme image avec les couleurs transformées RGB -> GBR
+   */
   swapRandomImage(): void {
     // Reset the swappedImageUrl before making the HTTP request
     // this.swappedImageUrl = '';
@@ -59,6 +62,9 @@ export class CouleursComponent implements OnInit {
       });
   }
 
+  /**
+   * Créé un damier rouge et vert
+   */
   createCheckerboard(): void {
     this.http.get<CheckerboardResponse>('http://localhost:8087/createCheckerboard')
       .subscribe(response => {
