@@ -16,7 +16,7 @@ import java.util.Random;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
-public class HistogrammeController {
+public class HistogrammeGrisController {
     
     @Value("${images.directory}")
     private String imagesDirectory;
