@@ -13,7 +13,7 @@ import java.util.List;
 import javax.imageio.ImageIO;
 
 @Component
-public class Descripteur64_1f {
+public class DescripteurGris64_1f {
     
     static final int RGB_DEPTH = 3, RED = 0, GREEN = 1, BLUE = 2;
     int width, height;
@@ -32,7 +32,7 @@ public class Descripteur64_1f {
     private String imagesListOutputFile;  // Chemin vers le fichier de sauvegarde pour la copie du fichier texte
     
     // Constructeur par défaut
-    public Descripteur64_1f() {
+    public DescripteurGris64_1f() {
     }
     
     // Méthode principale pour calculer l'histogramme de toutes les images avec 64 niveaux de gris
@@ -58,7 +58,10 @@ public class Descripteur64_1f {
                     float[] grayHistogram = computeNormalizedGrayLevelHistogram64Bins();
                     
                     // Sauvegarder l'histogramme dans le fichier de sortie
-                    saveGrayHistogram(grayWriter, imageName, grayHistogram);
+//                    if(Files.exists(Paths.get(grayHistogramOutputFile))) {
+//                        Files.delete(Paths.get(grayHistogramOutputFile));
+                        saveGrayHistogram(grayWriter, imageName, grayHistogram);
+//                    }
                     
                 } else {
                     System.out.println("L'image " + imageName + " n'existe pas dans le répertoire : " + imagesDirectory);
