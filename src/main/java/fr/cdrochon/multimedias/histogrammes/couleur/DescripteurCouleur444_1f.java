@@ -1,4 +1,4 @@
-package fr.cdrochon.multimedias.histogrammes;
+package fr.cdrochon.multimedias.histogrammes.couleur;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
