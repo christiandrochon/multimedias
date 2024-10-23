@@ -13,7 +13,7 @@ import java.nio.file.Paths;
 import java.util.List;
 
 @Component
-public class Descripteur256_1f {
+public class DescripteurGris256_1f {
     
     @Value("${images.list.file}")
     private String imagesListFile;  // Chemin vers le fichier texte listant les images
