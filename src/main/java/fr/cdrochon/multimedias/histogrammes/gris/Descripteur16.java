@@ -1,4 +1,4 @@
-package fr.cdrochon.multimedias.histogrammes;
+package fr.cdrochon.multimedias.histogrammes.gris;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -12,7 +12,11 @@ import java.util.List;
 import javax.imageio.ImageIO;
 
 @Component
-public class Descripteur256 {
+public class Descripteur16 {
+    
+    static final int RGB_DEPTH = 3, RED = 0, GREEN = 1, BLUE = 2;
+    int width, height;
+    float[][][] pixels;  // Tableau pour stocker les valeurs RVB normalisées
     
     @Value("${images.list.file}")
     private String imagesListFile;  // Chemin vers le fichier texte listant les images
@@ -20,11 +24,11 @@ public class Descripteur256 {
     @Value("${images.directory}")
     private String imagesDirectory;  // Chemin vers le répertoire contenant les images
     
-    private static final int RED = 0, GREEN = 1, BLUE = 2;
-    private int width, height;
-    private float[][][] pixels;
+    // Constructeur par défaut
+    public Descripteur16() {
+    }
     
-    // Méthode principale pour calculer le descripteur de la première image
+    // Méthode principale pour calculer l'histogramme de la première image avec 16 niveaux de gris
     public void calculateFirstImageGrayLevelHistogram() throws IOException {
         // Lire la première ligne du fichier texte
         List<String> imageNames = Files.readAllLines(Paths.get(imagesListFile));
@@ -39,11 +43,11 @@ public class Descripteur256 {
             if (imageFile.exists() && (imageFile.getName().endsWith(".jpg") || imageFile.getName().endsWith(".png"))) {
                 System.out.println("Traitement de l'image : " + firstImageName);
                 
-                // Lire l'image en utilisant la méthode `readImageFile` adaptée de JPictureFerecatu
+                // Lire l'image en utilisant la méthode `readImageFile`
                 readImageFile(imageFile.getAbsolutePath());
                 
-                // Calculer l'histogramme en niveaux de gris (256 bins)
-                float[] grayHistogram = computeNormalizedGrayLevelHistogram();
+                // Calculer l'histogramme en niveaux de gris avec 16 intervalles
+                float[] grayHistogram = computeNormalizedGrayLevelHistogram16Bins();
                 
                 // Afficher l'histogramme normalisé
                 displayNormalizedGrayLevelHistogram(grayHistogram);
@@ -56,28 +60,24 @@ public class Descripteur256 {
         }
     }
     
-    // Méthode pour lire l'image comme dans JPictureFerecatu
+    // Méthode pour lire l'image en utilisant la méthode de lecture exacte
     private void readImageFile(String fileName) {
         try {
             BufferedImage img = ImageIO.read(new File(fileName));
             width = img.getWidth();
             height = img.getHeight();
-            pixels = new float[width][height][3];  // Créer une matrice pour stocker les pixels RVB
+            pixels = new float[width][height][RGB_DEPTH];  // Créer une matrice pour stocker les pixels RVB
             int[] rgbArray = img.getRGB(0, 0, width, height, null, 0, width);
+            int pixel;
             
+            // Lire chaque pixel et normaliser les valeurs RVB
             for (int x = 0; x < width; ++x) {
                 for (int y = 0; y < height; ++y) {
-                    int pixel = rgbArray[y * width + x];
-                    
-                    // Extraire les composantes RVB et les normaliser entre 0 et 1
+                    pixel = rgbArray[y * width + x];
+                    // Extraire les valeurs RGB normalisées entre 0 et 1
                     pixels[x][y][RED] = (float) ((pixel >> 16) & 0xff) / 255.0f;
                     pixels[x][y][GREEN] = (float) ((pixel >> 8) & 0xff) / 255.0f;
                     pixels[x][y][BLUE] = (float) (pixel & 0xff) / 255.0f;
-                    
-                    // Correction pour éviter 1 exact
-                    if (pixels[x][y][RED] == 1) pixels[x][y][RED] -= 1e-5f;
-                    if (pixels[x][y][GREEN] == 1) pixels[x][y][GREEN] -= 1e-5f;
-                    if (pixels[x][y][BLUE] == 1) pixels[x][y][BLUE] -= 1e-5f;
                 }
             }
         } catch (IOException e) {
@@ -85,27 +85,36 @@ public class Descripteur256 {
         }
     }
     
-    // Méthode pour calculer l'histogramme en niveaux de gris normalisé (256 niveaux de gris)
-    private float[] computeNormalizedGrayLevelHistogram() {
-        int[] histogram = new int[256];  // Histogramme avec 256 niveaux de gris
+    // Méthode pour calculer l'histogramme en niveaux de gris normalisé avec 16 niveaux de gris
+    private float[] computeNormalizedGrayLevelHistogram16Bins() {
+        int[] histogram = new int[16];  // Histogramme avec 16 niveaux de gris
         int totalPixels = width * height;  // Nombre total de pixels
+        float binSize = 1.0f / 16;  // Taille des intervalles des bins dans l'intervalle [0, 1]
         
         // Parcourir tous les pixels de l'image pour calculer les niveaux de gris
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
-                // Calculer le niveau de gris pondéré en utilisant les valeurs RVB stockées
-                int grayLevel = (int) (0.299 * pixels[x][y][RED] * 255.0 +
-                        0.587 * pixels[x][y][GREEN] * 255.0 +
-                        0.114 * pixels[x][y][BLUE] * 255.0);
+                // Calculer le niveau de gris pondéré (valeur entre 0 et 1)
+                float grayLevel = (0.299f * pixels[x][y][RED] +
+                        0.587f * pixels[x][y][GREEN] +
+                        0.114f * pixels[x][y][BLUE]);
+                
+                // Quantification sur 16 intervalles : chaque bin correspond à une partie de l'intervalle [0, 1]
+                int binIndex = (int) (grayLevel / binSize);
+                
+                // Assurer que le bin indexé est valide (éviter les dépassements)
+                if (binIndex >= 16) {
+                    binIndex = 15;
+                }
                 
                 // Incrémenter le bin correspondant dans l'histogramme
-                histogram[grayLevel]++;
+                histogram[binIndex]++;
             }
         }
         
         // Normaliser l'histogramme en divisant chaque bin par le nombre total de pixels
-        float[] normalizedHistogram = new float[256];
-        for (int i = 0; i < 256; i++) {
+        float[] normalizedHistogram = new float[16];
+        for (int i = 0; i < 16; i++) {
             normalizedHistogram[i] = (float) histogram[i] / totalPixels;  // Valeur normalisée entre 0 et 1
         }
         
@@ -114,7 +123,7 @@ public class Descripteur256 {
     
     // Méthode pour afficher l'histogramme en niveaux de gris normalisé (sur une seule ligne)
     private void displayNormalizedGrayLevelHistogram(float[] histogram) {
-        System.out.print("Histogramme normalisé en niveaux de gris : ");
+        System.out.print("Histogramme normalisé en niveaux de gris avec 16 intervalles : ");
         for (int i = 0; i < histogram.length; i++) {
             System.out.print(histogram[i]);
             if (i < histogram.length - 1) {
