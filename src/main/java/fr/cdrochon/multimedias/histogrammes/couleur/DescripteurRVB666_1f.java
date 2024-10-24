@@ -12,7 +12,7 @@ public class DescripteurRVB666_1f extends AbstractIndexDatabase {
     @Value("${histogram.rgb666.output}")
     private String rgbHistogramOutputFile;  // Fichier de sortie pour les histogrammes de couleur
     
-    private static final int BINS = 2;  // Diviser chaque axe R, V, B en 2 intervalles
+    private static final int BINS = 6;  // Diviser chaque axe R, V, B en 6 intervalles
     private static final float BIN_SIZE = 1.0f / BINS;  // Taille de chaque bin
     private static final int RED = 0, GREEN = 1, BLUE = 2;
     
@@ -35,7 +35,6 @@ public class DescripteurRVB666_1f extends AbstractIndexDatabase {
                 
                 // Calculer l'index du bin dans l'histogramme 3D
                 int binIndex = rBin * BINS * BINS + gBin * BINS + bBin;
-                
                 // Incrémenter le bin correspondant dans l'histogramme
                 histogram[binIndex]++;
             }
