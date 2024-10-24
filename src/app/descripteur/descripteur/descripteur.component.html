@@ -1,19 +1,32 @@
-<div class="container">
-  <h1>Génération des Descripteurs</h1>
+<div class="container mt-5 text-center">
 
-  <button class="btn btn-primary m-2" (click)="generateRVB666()" [disabled]="loading">Générer RVB 6x6x6</button>
-  <button class="btn btn-primary m-2" (click)="generateRVB444()" [disabled]="loading">Générer RVB 4x4x4</button>
-  <button class="btn btn-primary m-2" (click)="generateRVB222()" [disabled]="loading">Générer RVB 2x2x2</button>
-  <button class="btn btn-primary m-2" (click)="generateGrey256()" [disabled]="loading">Générer Gris 256</button>
-  <button class="btn btn-primary m-2" (click)="generateGrey64()" [disabled]="loading">Générer Gris 64</button>
-  <button class="btn btn-primary m-2" (click)="generateGrey16()" [disabled]="loading">Générer Gris 16</button>
 
-  <!-- Indicateur de chargement -->
-  <div *ngIf="loading" class="mt-3">
-    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-    Traitement en cours...
+  <!-- Link to return to the homepage -->
+  <div class="mb-5">
+    <a href="/" class="btn btn-secondary">
+      <i class="bi bi-house-door"></i> Retour à la page d'accueil
+    </a>
   </div>
 
+  <h1 class="mb-4">Génération des Descripteurs</h1>
+
+  <!-- Centrage des boutons avec Bootstrap -->
+  <div class="d-flex justify-content-center flex-wrap mb-4">
+    <button class="btn btn-primary m-2" (click)="generateRVB666()" [disabled]="loading">Générer descripteurs RVB 6x6x6</button>
+    <button class="btn btn-primary m-2" (click)="generateRVB444()" [disabled]="loading">Générer descripteurs RVB 4x4x4</button>
+    <button class="btn btn-primary m-2" (click)="generateRVB222()" [disabled]="loading">Générer descripteurs RVB 2x2x2</button>
+    <button class="btn btn-primary m-2" (click)="generateGrey256()" [disabled]="loading">Générer descripteurs 256 niveaux de gris</button>
+    <button class="btn btn-primary m-2" (click)="generateGrey64()" [disabled]="loading">Générer descripteurs 64 niveaux de gris</button>
+    <button class="btn btn-primary m-2" (click)="generateGrey16()" [disabled]="loading">Générer descripteurs 16 niveaux de gris</button>
+  </div>
+
+  <!-- Indicateur de chargement centré -->
+  <div *ngIf="loading" class="d-flex justify-content-center mt-3">
+    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+    <span class="ms-2">Traitement en cours...</span>
+  </div>
+
+  <!-- Message informatif centré -->
   <div *ngIf="message && !loading" class="alert alert-info mt-4">
     {{ message }}
   </div>
