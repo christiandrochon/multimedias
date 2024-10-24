@@ -63,9 +63,14 @@ public class HistogrammeCouleurController {
                 int green = (rgb >> 8) & 0xff;
                 int blue = rgb & 0xff;
                 
-                redHistogram[red / binSize]++;
-                greenHistogram[green / binSize]++;
-                blueHistogram[blue / binSize]++;
+                //eviter les valeurs hors des limites
+                int redBinIndex = Math.min(red / binSize, numBins - 1);
+                int greenBinIndex = Math.min(green / binSize, numBins - 1);
+                int blueBinIndex = Math.min(blue / binSize, numBins - 1);
+                
+                redHistogram[redBinIndex]++;
+                greenHistogram[greenBinIndex]++;
+                blueHistogram[blueBinIndex]++;
             }
         }
         

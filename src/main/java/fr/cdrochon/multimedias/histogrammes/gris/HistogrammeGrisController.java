@@ -74,7 +74,7 @@ public class HistogrammeGrisController {
             for(int x = 0; x < width; x++) {
                 int rgb = image.getRGB(x, y);
                 int grayLevel = (rgb >> 16) & 0xff;
-                int binIndex = grayLevel / binSize;
+                int binIndex = Math.min(grayLevel / binSize, numBins - 1); // Ensure binIndex is within bounds
                 histogram[binIndex]++;
             }
         }
