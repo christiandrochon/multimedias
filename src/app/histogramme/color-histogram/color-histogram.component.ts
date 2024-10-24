@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {HistogrammeService} from '../../histogrammeservice/histogramme.service';
+import {HistogrammeService} from '../histogrammeservice/histogramme.service';
 import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import {BaseChartDirective} from 'ng2-charts';

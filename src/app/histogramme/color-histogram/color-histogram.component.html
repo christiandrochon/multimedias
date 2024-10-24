@@ -12,7 +12,7 @@
   <!-- Sélecteur du nombre de bins et bouton pour recharger une image -->
   <div class="d-flex justify-content-center align-items-center mb-4">
     <div class="mx-3">
-      <label for="numBins" class="form-label">Nombre d'intervalles de couleurs :</label>
+      <label for="numBins" class="form-label">Changer le nombre d'intervalles de couleurs</label>
       <input id="numBins" type="number" [(ngModel)]="numBins" min="2" max="256" class="form-control w-100" (change)="updateBins(); loadHistogram()"/>
     </div>
 
