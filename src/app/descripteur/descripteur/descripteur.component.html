@@ -1,0 +1,20 @@
+<div class="container">
+  <h1>Génération des Descripteurs</h1>
+
+  <button class="btn btn-primary m-2" (click)="generateRVB666()" [disabled]="loading">Générer RVB 6x6x6</button>
+  <button class="btn btn-primary m-2" (click)="generateRVB444()" [disabled]="loading">Générer RVB 4x4x4</button>
+  <button class="btn btn-primary m-2" (click)="generateRVB222()" [disabled]="loading">Générer RVB 2x2x2</button>
+  <button class="btn btn-primary m-2" (click)="generateGrey256()" [disabled]="loading">Générer Gris 256</button>
+  <button class="btn btn-primary m-2" (click)="generateGrey64()" [disabled]="loading">Générer Gris 64</button>
+  <button class="btn btn-primary m-2" (click)="generateGrey16()" [disabled]="loading">Générer Gris 16</button>
+
+  <!-- Indicateur de chargement -->
+  <div *ngIf="loading" class="mt-3">
+    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+    Traitement en cours...
+  </div>
+
+  <div *ngIf="message && !loading" class="alert alert-info mt-4">
+    {{ message }}
+  </div>
+</div>

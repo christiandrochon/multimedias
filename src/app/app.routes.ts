@@ -6,6 +6,8 @@ import {CouleursComponent} from './couleurs/couleurs.component';
 import {HomeComponent} from './home/home.component';
 import {GreyHistogramComponent} from './histogramme/grey-histogram/grey-histogram.component';
 import {ColorHistogramComponent} from './histogramme/color-histogram/color-histogram.component';
+import {DescripteurService} from './descripteur/service/descripteur.service';
+import {DescripteurComponent} from './descripteur/descripteur/descripteur.component';
 
 
 export const appRoutes: Routes = [
@@ -15,7 +17,8 @@ export const appRoutes: Routes = [
   {path: 'createCheckerboard', component: CouleursComponent},
   {path: 'swapRandomImage', component: CouleursComponent},
   {path: 'histogramme-gris/:bins', component: GreyHistogramComponent},
-  {path: 'histogramme-couleur/:bins', component: ColorHistogramComponent}
+  {path: 'histogramme-couleur/:bins', component: ColorHistogramComponent},
+  {path: 'descripteurs', component: DescripteurComponent}
 ];
 
 export const appRoutingProviders = [

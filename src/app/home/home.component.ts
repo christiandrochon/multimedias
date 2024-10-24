@@ -18,6 +18,7 @@ export class HomeComponent {
     { path: '/createCheckerboard', description: 'Create Checkerboard' },
     { path: '/swapRandomImage', description: 'Swap Random Image' },
     {path: '/histogramme-gris/:bins', description: 'Grey Histogram'},
-    {path: 'histogramme-couleur/:bins', description: 'Color Histogram'}
+    {path: 'histogramme-couleur/:bins', description: 'Color Histogram'},
+    {path: '/descripteurs', description: 'Génération de descripteurs'}
   ];
 }
