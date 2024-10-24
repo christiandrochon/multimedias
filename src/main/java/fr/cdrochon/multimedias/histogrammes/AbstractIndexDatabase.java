@@ -39,7 +39,12 @@ public abstract class AbstractIndexDatabase {
      */
     protected abstract String getOutputFilePath();
     
-    // Méthode pour lire l'image
+    /**
+     * Méthode pour lire l'image à partir du fichier
+     *
+     * @param fileName le nom du fichier
+     * @throws IOException en cas d'erreur d'entrée/sortie
+     */
     protected void readImageFile(String fileName) throws IOException {
         BufferedImage img = ImageIO.read(new File(fileName));
         width = img.getWidth();
